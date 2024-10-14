@@ -43,17 +43,7 @@ do
     fi
   done
 
-  pkgfile=$(bash -c "./parse_pspbuild.sh $pkgdir/PSPBUILD pkgoutput")
 
-  if [[ ! -f "${pkgdir}/${pkgfile}" ]]; then
-    echo "Building $pkgdir ..."
-    (cd $pkgdir && psp-makepkg)
-  fi
-
-  if [ ! -z "$doinstall" ]; then
-    echo "Installing $pkgdir"
-    psp-pacman -U --noconfirm "${pkgdir}/${pkgfile}" --overwrite '*'
-  fi
 
 done
 
